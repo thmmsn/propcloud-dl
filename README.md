@@ -24,7 +24,7 @@ Laster ned transaksjoner fra PropCloud etter fylke/kommune, år og måned.
 Eksempel:
 
 ```
-python propcloud-get.py --fylke 50 --year 2020:2024 --month 1:12
+python propcloud-get.py --fylke 50 --år 2020:2024 --måned 1:12
 ```
 
 Output lagres i:
@@ -41,7 +41,7 @@ Støtter intervaller (2020:2024) og lister (5001 5007).
 Eksempel:
 
 ```
-python propcloud-etl.py --kommune 5001 --year 2021:2024
+python propcloud-etl.py --kommune 5001 --år 2021:2024
 ```
 
 Output:
@@ -82,7 +82,7 @@ historikk/kommunenummer-kommunenavn-gnr-bnr-fnr-snr.json
 ## Komplett flyt
 
 ```
-python propcloud-get.py --fylke 50 --year 2020:2024
+python propcloud-get.py --fylke 50 --år 2020:2024
 python propcloud-etl.py --fylke 50
 python propcloud-hist.py --fil unike-gnr-bnr.csv
 ```
