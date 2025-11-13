@@ -4,9 +4,9 @@ Dette prosjektet består av tre kommandolinjeverktøy som sammen utgjør en komp
 
 ## Verktøy
 
-- **propcloud-get.py** – laster ned rådata fra PropCloud  
-- **propcloud-etl.py** – flater ut JSON-data til CSV  
-- **propcloud-hist.py** – henter historikk fra Webatlas  
+- **pc-get.py** – laster ned rådata fra PropCloud  
+- **pc-etl.py** – flater ut JSON-data til CSV  
+- **pc-hist.py** – henter historikk fra Webatlas  
 - **postnummer.csv** – kobler kommunenavn ↔ kommunenummer  
 
 ## Mappestruktur
@@ -17,14 +17,14 @@ etl/           – flate CSV-filer
 historikk/     – historikkfiler  
 ```
 
-## propcloud-get.py
+## pc-get.py
 
 Laster ned transaksjoner fra PropCloud etter fylke/kommune, år og måned.
 
 Eksempel:
 
 ```
-python propcloud-get.py --fylke 50 --år 2020:2024 --måned 1:12
+python pc-get.py --fylke 50 --år 2020:2024 --måned 1:12
 ```
 
 Output lagres i:
@@ -33,7 +33,7 @@ Output lagres i:
 matrikkelen/<fylke-navn>/<kommune-navn>/<fylke-kommune-år-måned>.json
 ```
 
-## propcloud-etl.py
+## pc-etl.py
 
 Flater ut JSON-filer fra matrikkelen/ til én CSV.  
 Støtter intervaller (2020:2024) og lister (5001 5007).
@@ -41,7 +41,7 @@ Støtter intervaller (2020:2024) og lister (5001 5007).
 Eksempel:
 
 ```
-python propcloud-etl.py --kommune 5001 --år 2021:2024
+python pc-etl.py --kommune 5001 --år 2021:2024
 ```
 
 Output:
@@ -50,7 +50,7 @@ Output:
 etl/eiendomsoverdragelser_kommune-5001_år-2021-2024_flat.csv
 ```
 
-## propcloud-hist.py
+## pc-hist.py
 
 Henter historiske transaksjoner for gnr/bnr fra Webatlas.  
 GID genereres automatisk.
@@ -58,13 +58,13 @@ GID genereres automatisk.
 Enkeltoppslag:
 
 ```
-python propcloud-hist.py --kommune 5001 --gnr 414 --bnr 307
+python pc-hist.py --kommune 5001 --gnr 414 --bnr 307
 ```
 
 CSV-batch:
 
 ```
-python propcloud-hist.py --fil liste.csv
+python pc-hist.py --fil liste.csv
 ```
 
 CSV må være på formen:
@@ -82,9 +82,9 @@ historikk/kommunenummer-kommunenavn-gnr-bnr-fnr-snr.json
 ## Komplett flyt
 
 ```
-python propcloud-get.py --fylke 50 --år 2020:2024
-python propcloud-etl.py --fylke 50
-python propcloud-hist.py --fil unike-gnr-bnr.csv
+python pc-get.py --fylke 50 --år 2020:2024
+python pc-etl.py --fylke 50
+python pc-hist.py --fil unike-gnr-bnr.csv
 ```
 
 ## Avhengigheter
